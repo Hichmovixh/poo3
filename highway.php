@@ -1,18 +1,55 @@
 <?php
-require_once ("HighWay.php");
+abstract class HighWay {
 
-class ResidentialWay extends HighWay {
+    /**
+     * @var array
+     */
+    private $currentVehicles;
 
-    public $currentVehicles;
+    /**
+     * @var integer
+     */
+    private $nbLane;
 
-    public function __construct($nbLane, $maxSpeed)
+    /**
+     * @var integer
+     */
+    private $maxSpeed;
+
+    public function __construct(int $nbLane, int $maxSpeed)
     {
-        parent::__construct(2, 50);
-        $this->currentVehicles = array();
+        $this->nbLane = $nbLane;
+        $this->maxSpeed = $maxSpeed;
+        $this->currentVehicles = [];
     }
 
-    public function addVehicles(Vehicle $vehicles): void
+    abstract public function addVehicles(Vehicle $vehicle): void ;
+
+    public function getCurrentVehicles(): array
     {
-        $this->currentVehicles[] = $vehicles;
+        return $this->currentVehicles;
+    }
+
+    public function setCurrentVehicles(array $currentVehicles ): void
+    {
+        $this->currentVehicles = $currentVehicles;
+    }
+
+    public function getNbLane(): int
+    {
+        return $this->nbLane;
+    }
+
+    public function setnbLane(int $nbLane):void
+    {
+        $this->nbLane = $nbLane;
+    }
+    public function getMaxSpeed (): int
+    {
+        return $this-> nbLane;
+    }
+    public function setMaxSpeed(int $maxSpeed): void
+    {
+        $this-> maxSpeed = $maxSpeed;
     }
 }
